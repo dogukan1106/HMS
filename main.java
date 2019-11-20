@@ -5,12 +5,9 @@ import java.util.Scanner;
  Proper Email
  Proper Password
  */
-
 //Deneme
 
 public class main {
-	@SuppressWarnings("unused")
-	
 	public static void main(String[] args) {
 		Management act = new Management();
 		act.init();
@@ -102,18 +99,11 @@ public class main {
 			System.out.print("Enter a number for action listed above : ");
 			n = getInput();
 		}
-		System.out.println("Program Terminated.");
+		System.out.println("Program Terminated!!!");
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	public static int getInput(){
 		Scanner input = new Scanner(System.in);
