@@ -1,12 +1,12 @@
 import java.util.Scanner;
-@SuppressWarnings("resource")
-
+//@SuppressWarnings("resource")
+//Deneme123
 /*
  Proper Email
  Proper Password
  */
 //Deneme
-
+//Added
 public class main {
 	public static void main(String[] args) {
 		Management act = new Management();
