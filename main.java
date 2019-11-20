@@ -6,7 +6,7 @@ import java.util.Scanner;
  Proper Password
  */
 
-
+//Deneme
 
 public class main {
 	@SuppressWarnings("unused")
