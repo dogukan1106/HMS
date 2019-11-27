@@ -6,7 +6,7 @@ import java.util.Scanner;
  Proper Password
  */
 //Deneme
-//Added
+//Added1
 public class main {
 	public static void main(String[] args) {
 		Management act = new Management();
