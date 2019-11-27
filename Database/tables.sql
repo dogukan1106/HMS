@@ -27,5 +27,8 @@ CREATE TABLE hms.Administrator
 (
   a_id INT NOT NULL,
   a_Hashpw VARCHAR(16) NOT NULL,
+  a_Email VARCHAR(40) NOT NULL,
+  PRIMARY KEY (a_id),
+  UNIQUE (a_Email)
 );
 
