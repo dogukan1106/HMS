@@ -23,6 +23,18 @@ CREATE TABLE hms.Doctor
   UNIQUE (d_Email)
 );
 
+CREATE TABLE hms.Make_Appointments
+(
+  checkin_time VARCHAR(5) NOT NULL,
+  date VARCHAR(10) NOT NULL,
+  app_id INT NOT NULL,
+  p_id INT NOT NULL,
+  d_id INT NOT NULL,
+  PRIMARY KEY (app_id),
+  FOREIGN KEY (p_id) REFERENCES Patient(p_id),
+  FOREIGN KEY (d_id) REFERENCES Doctor(d_id)
+);
+
 CREATE TABLE hms.Administrator
 (
   a_id INT NOT NULL,
