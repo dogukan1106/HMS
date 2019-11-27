@@ -22,3 +22,10 @@ CREATE TABLE hms.Doctor
   PRIMARY KEY (d_id),
   UNIQUE (d_Email)
 );
+
+CREATE TABLE hms.Administrator
+(
+  a_id INT NOT NULL,
+  a_Hashpw VARCHAR(16) NOT NULL,
+);
+
