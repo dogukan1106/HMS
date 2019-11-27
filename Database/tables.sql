@@ -1,4 +1,4 @@
-CREATE SCHEMA 'hms';
+CREATE SCHEMA `hms`;
 
 CREATE TABLE hms.Patient
 (
