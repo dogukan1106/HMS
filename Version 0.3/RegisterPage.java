@@ -35,7 +35,7 @@ public class RegisterPage {
         label.setFont(new Font("Sans-Serif", Font.BOLD, 15));
         frame.getContentPane().add(label);
 
-        JLabel lblUsername = new JLabel("Username");
+        JLabel lblUsername = new JLabel("Name");
         lblUsername.setBounds(82, 79, 68, 27);
         frame.getContentPane().add(lblUsername);
 
