@@ -7,7 +7,7 @@ public class MainPage  {
     private JFrame frame;
     Controller cont;
 
-    public MainPage(cont){
+    public MainPage(Controller cont){
         this.cont = cont;
         display();
     }
