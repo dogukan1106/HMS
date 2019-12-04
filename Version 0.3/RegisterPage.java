@@ -46,12 +46,7 @@ public class RegisterPage {
         JLabel lblTckn = new JLabel("TCKN (Optional)");
         lblTckn.setBounds(82, 180, 150, 27);
         frame.getContentPane().add(lblTckn);
-
-        tckn = new JTextField();
-        tckn.setBounds(199, 180, 96, 20);
-        frame.getContentPane().add(tckn);
-        tckn.setColumns(10);
-
+        
         username = new JTextField();
         username.setBounds(199, 82, 96, 20);
         frame.getContentPane().add(username);
@@ -69,7 +64,7 @@ public class RegisterPage {
         tckn.setColumns(10);
 
         JButton register = new JButton("Register");
-       register.addActionListener(new CheckRegisterListener(frame));
+        register.addActionListener(new CheckRegisterListener(frame));
         register.setBounds(199, 228, 87, 23);
         frame.getContentPane().add(register);
         frame.setVisible(true);
