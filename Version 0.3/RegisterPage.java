@@ -64,7 +64,8 @@ public class RegisterPage {
         tckn.setColumns(10);
 
         JButton register = new JButton("Register");
-        register.addActionListener(new CheckRegisterListener(frame));
+        //register.addActionListener(new CheckRegisterListener(frame));
+        register.addActionListener(new RegisterInputListener(frame,username,password,tckn));
         register.setBounds(199, 228, 87, 23);
         frame.getContentPane().add(register);
         frame.setVisible(true);
