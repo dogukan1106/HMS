@@ -2,7 +2,6 @@ import java.sql.*;
 
 public class main {
     public static void main(String[] args) {
-
         Connection conn = null;
         Statement stmt = null;
         PreparedStatement pstmt = null;
@@ -20,6 +19,8 @@ public class main {
         //cont.addAdmin();
         //cont.addDoctor();
         //cont.addPatient();
+        
+        MainPage mPage = new MainPage();
 
     }
 }
