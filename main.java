@@ -20,7 +20,7 @@ public class main {
         //cont.addDoctor();
         //cont.addPatient();
         
-        MainPage mPage = new MainPage();
+        MainPage mPage = new MainPage(cont);
 
     }
 }
