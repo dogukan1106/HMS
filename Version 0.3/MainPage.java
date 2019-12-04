@@ -33,7 +33,7 @@ public class MainPage  {
         JButton signup = new JButton("Sign up");
         signup.setBackground(Color.PINK);
         signup.setForeground(Color.white);
-        signup.addActionListener(new RegisterListener(frame));
+        signup.addActionListener(new RegisterListener(frame, cont));
         frame.add(signin);
         frame.add(signinD);
         frame.add(signinA);
