@@ -7,12 +7,14 @@ import java.sql.Statement;
 
 public class RegisterListener implements ActionListener {
     JFrame frame;
-    public RegisterListener(JFrame frame) {
+    Controller cont;
+    public RegisterListener(JFrame frame, Controller cont) {
         this.frame = frame;
+        this.cont = cont;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        RegisterPage rPage = new RegisterPage();
+        RegisterPage rPage = new RegisterPage(cont);
     }
 }
