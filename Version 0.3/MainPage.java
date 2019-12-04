@@ -5,14 +5,14 @@ import javax.swing.*;
 public class MainPage  {
 
     private JFrame frame;
+    Controller cont;
 
-
-    public MainPage(){
+    public MainPage(cont){
+        this.cont = cont;
         display();
-
     }
+    
     private void display() {
-
         frame = new JFrame();
         frame.setSize(500,500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
