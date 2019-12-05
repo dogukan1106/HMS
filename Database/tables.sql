@@ -43,3 +43,16 @@ CREATE TABLE hms.Administrator
   PRIMARY KEY (id),
   UNIQUE (email)
 );
+
+INSERT INTO hms.administrator VALUES('I1m6zLHvcryAtRsLr1wZug==','duduoglu@ozu.edu.tr'); /*
+email: duduoglu@ozu.edu.tr
+password: 123456
+*/
+INSERT INTO hms.administrator VALUES('WKEGNQs0rk8HqZqlzi5tQA==','ozvardar@ozu.edu.tr');/*
+email: ozvardar@ozu.edu.tr
+password: 123123
+*/
+INSERT INTO hms.administrator VALUES('8Xm4AJypcFXvNyiO8fKzVw==','karakuz@ozu.edu.tr');/*
+email: karakuz@ozu.edu.tr
+password: 123321
+*/
