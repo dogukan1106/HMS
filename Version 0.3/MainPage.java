@@ -5,10 +5,8 @@ import javax.swing.*;
 public class MainPage  {
 
     private JFrame frame;
-    Controller cont;
 
     public MainPage(Controller cont){
-        this.cont = cont;
         display();
     }
     
@@ -33,7 +31,7 @@ public class MainPage  {
         JButton signup = new JButton("Sign up");
         signup.setBackground(Color.PINK);
         signup.setForeground(Color.white);
-        signup.addActionListener(new RegisterListener(frame, cont));
+        signup.addActionListener(new RegisterListener(frame));
         frame.add(signin);
         frame.add(signinD);
         frame.add(signinA);
