@@ -44,7 +44,7 @@ CREATE TABLE hms.Administrator
   UNIQUE (email)
 );
 
-INSERT INTO hms.administrator VALUES('I1m6zLHvcryAtRsLr1wZug==','duduoglu@ozu.edu.tr'); /*
+INSERT INTO hms.administrator VALUES('541M4Z5A+id1E2vXnnX6Dw==','duduoglu@ozu.edu.tr'); /*
 email: duduoglu@ozu.edu.tr
 password: 123456
 */
