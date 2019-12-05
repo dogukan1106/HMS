@@ -2,45 +2,44 @@ CREATE SCHEMA `hms`;
 
 CREATE TABLE hms.Patient
 (
-  p_id INT NOT NULL,
+  id INT NOT NULL auto_increment,
   p_Tckn VARCHAR(11),
   p_Name VARCHAR(50) NOT NULL,
-  p_Email VARCHAR(40) NOT NULL,
-  p_Hashpw VARCHAR(50) NOT NULL,
-  PRIMARY KEY (p_id),
+  email VARCHAR(40) NOT NULL,
+  hashpw VARCHAR(50) NOT NULL,
+  PRIMARY KEY (id),
   UNIQUE (p_Tckn),
-  UNIQUE (p_Email)
+  UNIQUE (email)
 );
 
 CREATE TABLE hms.Doctor
 (
-  d_id INT NOT NULL,
+  id INT NOT NULL auto_increment,
   d_Name VARCHAR(50) NOT NULL,
-  d_Email VARCHAR(40) NOT NULL,
-  d_Hashpw VARCHAR(50) NOT NULL,
+  email VARCHAR(40) NOT NULL,
+  hashpw VARCHAR(50) NOT NULL,
   departmentName VARCHAR(35) NOT NULL,
-  PRIMARY KEY (d_id),
-  UNIQUE (d_Email)
+  PRIMARY KEY (id),
+  UNIQUE (email)
 );
 
 CREATE TABLE hms.Make_Appointments
 (
-  checkin_time VARCHAR(5) NOT NULL,
-  date VARCHAR(10) NOT NULL,
-  app_id INT NOT NULL,
+  id INT NOT NULL auto_increment,
   p_id INT NOT NULL,
   d_id INT NOT NULL,
-  PRIMARY KEY (app_id),
-  FOREIGN KEY (p_id) REFERENCES Patient(p_id),
-  FOREIGN KEY (d_id) REFERENCES Doctor(d_id)
+  checkin_time VARCHAR(5) NOT NULL,
+  date VARCHAR(10) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (p_id) REFERENCES Patient(id),
+  FOREIGN KEY (d_id) REFERENCES Doctor(id)
 );
 
 CREATE TABLE hms.Administrator
 (
-  a_id INT NOT NULL,
-  a_Hashpw VARCHAR(50) NOT NULL,
-  a_Email VARCHAR(40) NOT NULL,
-  PRIMARY KEY (a_id),
-  UNIQUE (a_Email)
+  id INT NOT NULL auto_increment,
+  hashpw VARCHAR(50) NOT NULL,
+  email VARCHAR(40) NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE (email)
 );
-
