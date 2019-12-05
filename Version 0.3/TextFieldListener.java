@@ -15,12 +15,13 @@ public class TextFieldListener implements ActionListener{
     String sql;
     QueryHandler handler = new QueryHandler();
 
-    public TextFieldListener(JFrame frame, JTextField name, JPasswordField password, JTextField tckn){
+    public TextFieldListener(JFrame frame,JTextField email , JPasswordField password, JTextField tckn, JTextField name){
         //for Register
         this.frame = frame;
         this.name = name;
         this.password = password;
         this.tckn = tckn;
+        this.email = email;
     }
 
     public TextFieldListener(JFrame frame, JTextField email,JPasswordField password){
@@ -36,8 +37,8 @@ public class TextFieldListener implements ActionListener{
         handler.connect();
         if(!(name == null))//If its register page
         {
-            String nameInput = name.getText();
-            nameInput = "'" + nameInput + "'";
+            String emailInput = email.getText();
+            emailInput = "'" + emailInput + "'";
 
             String tcknInput = tckn.getText();
             tcknInput = "'" + tcknInput + "'";
@@ -45,20 +46,31 @@ public class TextFieldListener implements ActionListener{
             String p = password.getText();
             String passwordInput = new PasswordHash(p).hash();
 
+            String nameInput = name.getText();
+            nameInput = "'" + nameInput + "'";
+
             passwordInput = "'" + passwordInput + "'";
 
             //System.out.println("name: " + nameInput);
             //System.out.println("password: " + passwordInput);
             //System.out.println("tckn: " + tcknInput + "\n");
-
-            sql= "INSERT INTO hms.patient(p_Tckn, p_Name, p_Email, p_Hashpw) " +
+            if(tcknInput.equals("''")){
+                sql ="INSERT INTO hms.patient(p_Name, p_Email, p_Hashpw) " +
                     "VALUES("+
-                    tcknInput + "," +
                     nameInput + "," +
-                    "'emrekarakuz@gmail.com'" + "," +
+                    emailInput + "," +
                     passwordInput + ");";
 
+            }
+            else {
+                sql = "INSERT INTO hms.patient(p_Tckn, p_Name, p_Email, p_Hashpw) " +
+                        "VALUES(" +
+                        tcknInput + "," +
+                        nameInput + "," +
+                        emailInput + "," +
+                        passwordInput + ");";
 
+            }
             //cont.addPatient(nameInput,passwordInput, "'emrekarakuz@gmail.com'",tcknInput);
             if(handler.handleQuery(sql, "")){
                 frame.dispose();

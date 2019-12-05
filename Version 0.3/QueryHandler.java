@@ -8,7 +8,7 @@ public class QueryHandler {
 
     public boolean connect() {
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "13212karE");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "Hektor*3261");
             stmt = conn.createStatement();
             System.out.println("Connected!");
 

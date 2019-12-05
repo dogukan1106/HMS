@@ -11,7 +11,9 @@ public class MainPage  {
     }
 
     private void display() {
-        frame = new JFrame();
+
+        frame = new JFrame("BRUH FRAME");
+        frame.setIconImage(new ImageIcon(getClass().getResource("favicon.jpg")).getImage());
         frame.setSize(500,500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new GridLayout(5,5));
