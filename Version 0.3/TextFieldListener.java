@@ -6,45 +6,91 @@ import javax.swing.*;
 
 @SuppressWarnings("deprecation")
 
-public class RegisterInputListener implements ActionListener{
-    Controller cont;
+public class TextFieldListener implements ActionListener{
     JFrame frame;
     JTextField name;
     JPasswordField password;
     JTextField tckn;
+    JTextField email;
+    String sql;
+    QueryHandler handler = new QueryHandler();
 
-    public RegisterInputListener(JFrame frame, Controller cont, JTextField name, JPasswordField password, JTextField tckn){
+    public TextFieldListener(JFrame frame, JTextField name, JPasswordField password, JTextField tckn){
+        //for Register
         this.frame = frame;
         this.name = name;
         this.password = password;
         this.tckn = tckn;
-        this.cont = cont;
+    }
+
+    public TextFieldListener(JFrame frame, JTextField email,JPasswordField password){
+        //For Sign-In
+        this.frame = frame;
+        this.email = email;
+        this.password = password;
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-       String nameInput = name.getText();
-        nameInput = "'" + nameInput + "'";
+        handler.connect();
+        if(!name.equals(""))//If its register page
+        {
+            String nameInput = name.getText();
+            nameInput = "'" + nameInput + "'";
 
-        String tcknInput = tckn.getText();
-        tcknInput = "'" + tcknInput + "'";
+            String tcknInput = tckn.getText();
+            tcknInput = "'" + tcknInput + "'";
 
-        String p = password.getText();
-        String passwordInput = new PasswordHash(p).hash();
+            String p = password.getText();
+            String passwordInput = new PasswordHash(p).hash();
 
-        passwordInput = "'" + passwordInput + "'";
+            passwordInput = "'" + passwordInput + "'";
 
-        //System.out.println("name: " + nameInput);
-        //System.out.println("password: " + passwordInput);
-        //System.out.println("tckn: " + tcknInput + "\n");
-        
-         try {
-            cont.addPatient(nameInput,passwordInput, "'emrekarakuz@gmail.com'",tcknInput);
-            frame.dispose();
-            JOptionPane.showMessageDialog(null,"You Registered :)");
-        } catch(Exception exc){
-            //Wrong input/email/tckn type
+            //System.out.println("name: " + nameInput);
+            //System.out.println("password: " + passwordInput);
+            //System.out.println("tckn: " + tcknInput + "\n");
+
+            sql= "INSERT INTO hms.patient(p_Tckn, p_Name, p_Email, p_Hashpw) " +
+                    "VALUES("+
+                    tcknInput + "," +
+                    nameInput + "," +
+                    "'emrekarakuz@gmail.com'" + "," +
+                    passwordInput + ");";
+
+
+            //cont.addPatient(nameInput,passwordInput, "'emrekarakuz@gmail.com'",tcknInput);
+            if(handler.handleQuery(sql)){
+                frame.dispose();
+                JOptionPane.showMessageDialog(null,"You Registered :)");
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Something bad happened!");
+            }
+
+
         }
-        
+        else{//If its login page
+            String mail = email.getText();
+            mail = "'" + mail + "'";
+
+            String tcknInput = tckn.getText();
+            tcknInput = "'" + tcknInput + "'";
+
+            String p = password.getText();
+            String passwordInput = new PasswordHash(p).hash();
+
+            passwordInput = "'" + passwordInput + "'";
+
+            try {
+                //cont.login(mail,passwordInput);
+                frame.dispose();
+                JOptionPane.showMessageDialog(null,"You have loged on!");
+            } catch(Exception exc){
+                //Wrong input/email/tckn type
+            }
+
+        }
+
     }
 }
