@@ -40,8 +40,10 @@ public class RegisterInputListener implements ActionListener{
         
          try {
             cont.addPatient(nameInput,passwordInput, "'emrekarakuz@gmail.com'",tcknInput);
+            frame.dispose();
+            JOptionPane.showMessageDialog(null,"You Registered :)");
         } catch(Exception exc){
-
+            //Wrong input/email/tckn type
         }
         
     }
