@@ -10,9 +10,9 @@ import java.util.Base64;
 public class PasswordHash {
     private String hashed;
 
-    public PasswordHash(String p) {
-        if(!(p.equals("")))
-            hashed = salt(p);
+    public PasswordHash(String A, String B) {
+        if(!(A.equals("")))
+            hashed = salt(A,B);
         else{
 
         }
@@ -22,13 +22,13 @@ public class PasswordHash {
         return this.hashed;
     }
 
-    public String salt(String A){
+    public String salt(String A, String B){
         byte[] hash = new byte[0];
 
         try {
             KeySpec spec = new PBEKeySpec(
                     A.toCharArray(),
-                    A.getBytes(StandardCharsets.UTF_8),
+                    B.getBytes(StandardCharsets.UTF_8),
                     65536,
                     128
             );

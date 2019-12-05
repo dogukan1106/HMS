@@ -25,12 +25,12 @@ public class AddQueryListener implements ActionListener {
         QueryHandler handler = new QueryHandler();
 
         String p = pw.getText();
-        String passwordInput = new PasswordHash(p).hash();
+        String passwordInput = new PasswordHash(p,email.getText()).hash();
 
         String q = "'"+ name.getText() +"','"+ email.getText()+"','"+ passwordInput+"','"+ department.getText()+"'";
         handler.connect();
         handler.handleQuery("INSERT INTO hms.doctor(d_Name,email,hashpw,departmentName) values("+q+")", "");
-        JOptionPane.showMessageDialog(null,"BRUH");
+        JOptionPane.showMessageDialog(null,"Doctor Added");
         AdministratorPage aPage = new AdministratorPage();
     }
 

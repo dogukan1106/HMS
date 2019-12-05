@@ -44,7 +44,7 @@ public class TextFieldListener implements ActionListener{
             tcknInput = "'" + tcknInput + "'";
 
             String p = password.getText();
-            String passwordInput = new PasswordHash(p).hash();
+            String passwordInput = new PasswordHash(p,email.getText()).hash();
 
             String nameInput = name.getText();
             nameInput = "'" + nameInput + "'";
@@ -72,6 +72,7 @@ public class TextFieldListener implements ActionListener{
 
             }
             //cont.addPatient(nameInput,passwordInput, "'emrekarakuz@gmail.com'",tcknInput);
+            System.out.println(sql);
             if(handler.handleQuery(sql, "")){
                 frame.dispose();
                 JOptionPane.showMessageDialog(null,"You Registered :)");
@@ -88,7 +89,7 @@ public class TextFieldListener implements ActionListener{
             mail = "'" + mail + "'";
 
             String p = password.getText();
-            String passwordInput = new PasswordHash(p).hash();
+            String passwordInput = new PasswordHash(p,email.getText()).hash();
 
             passwordInput = "'" + passwordInput + "'";
 
@@ -110,7 +111,7 @@ public class TextFieldListener implements ActionListener{
             mail = "'" + mail + "'";
 
             String p = password.getText();
-            String passwordInput = new PasswordHash(p).hash();
+            String passwordInput = new PasswordHash(p,email.getText()).hash();
 
             passwordInput = "'" + passwordInput + "'";
 
@@ -132,7 +133,7 @@ public class TextFieldListener implements ActionListener{
             mail = "'" + mail + "'";
 
             String p = password.getText();
-            String passwordInput = new PasswordHash(p).hash();
+            String passwordInput = new PasswordHash(p,email.getText()).hash();
 
             passwordInput = "'" + passwordInput + "'";
 
@@ -151,19 +152,5 @@ public class TextFieldListener implements ActionListener{
         }
 
 
-    }
-
-    public String login(String tableName){
-        String mail = email.getText();
-        mail = "'" + mail + "'";
-
-        String p = password.getText();
-        String passwordInput = new PasswordHash(p).hash();
-
-        passwordInput = "'" + passwordInput + "'";
-
-        sql = "SELECT * FROM"+ tableName + "WHERE email =" + mail ;
-
-        return "";
     }
 }
