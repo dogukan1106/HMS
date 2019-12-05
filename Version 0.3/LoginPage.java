@@ -54,7 +54,8 @@ public class LoginPage {
         password.setColumns(10);
 
         JButton btnLogin = new JButton("Login");
-        btnLogin.addActionListener(new LoginListener(frame));
+        btnLogin.addActionListener(new TextFieldListener(frame, username, password));
+        //btnLogin.addActionListener(new LoginListener(frame));
         btnLogin.setBounds(199, 201, 87, 23);
         frame.getContentPane().add(btnLogin);
         frame.setVisible(true);

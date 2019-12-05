@@ -6,13 +6,11 @@ public class MainPage  {
 
     private JFrame frame;
 
-
     public MainPage(){
         display();
-
     }
-    private void display() {
 
+    private void display() {
         frame = new JFrame();
         frame.setSize(500,500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

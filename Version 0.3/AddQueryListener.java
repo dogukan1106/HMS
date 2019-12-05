@@ -19,7 +19,7 @@ public class AddQueryListener implements ActionListener {
         QueryHandler handler = new QueryHandler();
         String q = "'"+name.getText()+"','"+pw.getText()+"'";
         handler.connect();
-        handler.handleQuery("insert into doctor(d_Email,d_Hashpw) values("+q+")");
+        handler.handleQuery("insert into doctor(d_Email,d_Hashpw) values("+q+")", "");
         JOptionPane.showMessageDialog(null,"BRUH");
         AdministratorPage aPage = new AdministratorPage();
     }

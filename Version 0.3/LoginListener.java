@@ -15,7 +15,9 @@ public class LoginListener implements ActionListener {
         System.out.println(LoginPage.role);
         switch (LoginPage.role){
             case 1:
-                Patientpage pPage = new Patientpage();
+                if(true){
+                    Patientpage pPage = new Patientpage();
+                }
                 break;
             case 2:
                 DoctorPage dPage = new DoctorPage();
