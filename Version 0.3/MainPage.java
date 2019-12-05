@@ -36,7 +36,7 @@ public class MainPage  {
         frame.add(signinD);
         frame.add(signinA);
         frame.add(signup);
-        
+
         frame.setVisible(true);
 
 
@@ -44,4 +44,3 @@ public class MainPage  {
 
 
 }
-

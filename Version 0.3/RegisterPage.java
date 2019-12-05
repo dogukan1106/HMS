@@ -2,7 +2,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
-public class RegisterPage {
+public class RegisterPage
     private JFrame frame;
     private JTextField username;
     private JPasswordField password;
