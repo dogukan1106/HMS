@@ -2,8 +2,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
-public class RegisterPage {
-    Controller cont;
+public class RegisterPage 
     private JFrame frame;
     private JTextField username;
     private JPasswordField password;
@@ -16,8 +15,7 @@ public class RegisterPage {
     /**
      * Create the application.
      */
-    public RegisterPage(Controller cont) {
-        this.cont = cont;
+    public RegisterPage() {
         initialize();
     }
 
@@ -67,7 +65,7 @@ public class RegisterPage {
 
         JButton register = new JButton("Register");
         //register.addActionListener(new CheckRegisterListener(frame));
-        register.addActionListener(new RegisterInputListener(frame,cont,username,password,tckn));
+        register.addActionListener(new RegisterInputListener(frame,username,password,tckn));
         register.setBounds(199, 228, 87, 23);
         frame.getContentPane().add(register);
         frame.setVisible(true);
