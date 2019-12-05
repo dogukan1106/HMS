@@ -44,15 +44,15 @@ CREATE TABLE hms.Administrator
   UNIQUE (email)
 );
 
-INSERT INTO hms.administrator VALUES('541M4Z5A+id1E2vXnnX6Dw==','duduoglu@ozu.edu.tr'); /*
+INSERT INTO hms.administrator(hashpw,email) VALUES('541M4Z5A+id1E2vXnnX6Dw==','duduoglu@ozu.edu.tr'); /*
 email: duduoglu@ozu.edu.tr
 password: 123456
 */
-INSERT INTO hms.administrator VALUES('WKEGNQs0rk8HqZqlzi5tQA==','ozvardar@ozu.edu.tr');/*
+INSERT INTO hms.administrator(hashpw,email) VALUES('WKEGNQs0rk8HqZqlzi5tQA==','ozvardar@ozu.edu.tr');/*
 email: ozvardar@ozu.edu.tr
 password: 123123
 */
-INSERT INTO hms.administrator VALUES('8Xm4AJypcFXvNyiO8fKzVw==','karakuz@ozu.edu.tr');/*
+INSERT INTO hms.administrator(hashpw,email) VALUES('8Xm4AJypcFXvNyiO8fKzVw==','karakuz@ozu.edu.tr');/*
 email: karakuz@ozu.edu.tr
 password: 123321
 */
