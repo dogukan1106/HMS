@@ -6,7 +6,7 @@ public class MainPage  {
 
     private JFrame frame;
 
-    public MainPage(Controller cont){
+    public MainPage(){
         display();
     }
     
