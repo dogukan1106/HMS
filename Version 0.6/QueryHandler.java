@@ -10,16 +10,13 @@ public class QueryHandler {
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "13212karE");
             stmt = conn.createStatement();
-            System.out.println("Connected!");
+            //System.out.println("Connected!");
 
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Problem!");
 
         }
-
-        //cont.addDoctor();
-        //cont.addPatient();
         return true;
     }
 
@@ -38,7 +35,6 @@ public class QueryHandler {
         try (ResultSet rs = stmt.executeQuery(query)) {
             if(rs.next()){
                 if(rs.getString("hashpw").equals(password)){
-                    System.out.println(query + "\n" + rs.getString("hashpw"));
                     closeConnection();
                     return true;
                 }
@@ -67,7 +63,7 @@ public class QueryHandler {
         try {
             conn.close();
         } catch (Exception e) {
-            System.out.println("Error");
+            System.out.println("Error at line66");
         }
     }
 }

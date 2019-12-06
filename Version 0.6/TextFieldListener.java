@@ -37,21 +37,19 @@ public class TextFieldListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         handler.connect();
-        if(!(name == null))//If its register page
-        {
-            String emailInput = email.getText();
-            if(isCorrectEmail(emailInput) && isEmailExists(emailInput)){
-                emailInput = "'" + emailInput + "'";
+        String emailInput = email.getText();
+        String p = password.getText();
+        if(isCorrectEmail(emailInput) && isPassword6char(p)){
+            if(!(name == null))//If its register page
+            {
                 String tcknInput = tckn.getText();
-                tcknInput = "'" + tcknInput + "'";
-
-                String p = password.getText();
-                if(isPassword6char(p)){
-                    String passwordInput = new PasswordHash(p,email.getText()).hash();
-
-                    String nameInput = name.getText();
+                String nameInput = name.getText();
+                if(isEmailExists(emailInput) && isCorrectTckn(tcknInput) &&  !isEmpty(nameInput)){
+                    emailInput = "'" + emailInput + "'";
+                    tcknInput = "'" + tcknInput + "'";
                     nameInput = "'" + nameInput + "'";
 
+                    String passwordInput = new PasswordHash(p,email.getText()).hash();
                     passwordInput = "'" + passwordInput + "'";
 
                     if(tcknInput.equals("''")){
@@ -60,7 +58,6 @@ public class TextFieldListener implements ActionListener{
                                 nameInput + "," +
                                 emailInput + "," +
                                 passwordInput + ");";
-
                     }
                     else {
                         sql = "INSERT INTO hms.patient(p_Tckn, p_Name, email, hashpw) " +
@@ -69,7 +66,6 @@ public class TextFieldListener implements ActionListener{
                                 nameInput + "," +
                                 emailInput + "," +
                                 passwordInput + ");";
-
                     }
                     if(handler.handleQuery(sql)){
                         frame.dispose();
@@ -80,72 +76,26 @@ public class TextFieldListener implements ActionListener{
                     }
                 }
             }
-        }
-        else if(LoginPage.role == 1)//If its patient-login page
-        {
-            String mail = email.getText();
-            mail = "'" + mail + "'";
+            else {//If its NOT register page
+                emailInput = "'" + emailInput + "'";
 
-            String p = password.getText();
-            String passwordInput = new PasswordHash(p,email.getText()).hash();
+                String passwordInput = new PasswordHash(p, email.getText()).hash();
+                passwordInput = "'" + passwordInput + "'";
 
-            passwordInput = "'" + passwordInput + "'";
-
-            sql = "SELECT * FROM hms.patient WHERE email =" + mail ;
-            System.out.println(sql);
-
-
-            if(handler.handleQuery(sql, passwordInput.substring(1,passwordInput.length()-1))){
-                frame.dispose();
-                JOptionPane.showMessageDialog(null,"You have logged on");
-                Patientpage pPage = new Patientpage();
-            }
-            else{
-                JOptionPane.showMessageDialog(null,"Incorrect email or password");
-            }
-        }
-        else if(LoginPage.role == 2){//If its doctor-login page
-            String mail = email.getText();
-            mail = "'" + mail + "'";
-
-            String p = password.getText();
-            String passwordInput = new PasswordHash(p,email.getText()).hash();
-
-            passwordInput = "'" + passwordInput + "'";
-
-            sql = "SELECT * FROM hms.doctor WHERE email =" + mail ;
-            System.out.println(sql);
-
-
-            if(handler.handleQuery(sql, passwordInput.substring(1,passwordInput.length()-1))){
-                frame.dispose();
-                JOptionPane.showMessageDialog(null,"You have logged on");
-                DoctorPage dPage = new DoctorPage();
-            }
-            else{
-                JOptionPane.showMessageDialog(null,"Incorrect email or password");
-            }
-        }
-        else if(LoginPage.role == 3){//If its admin-login page
-            String mail = email.getText();
-            mail = "'" + mail + "'";
-
-            String p = password.getText();
-            String passwordInput = new PasswordHash(p,email.getText()).hash();
-
-            passwordInput = "'" + passwordInput + "'";
-
-            sql = "SELECT * FROM hms.administrator WHERE email =" + mail ;
-            System.out.println(sql);
-
-
-            if(handler.handleQuery(sql, passwordInput.substring(1,passwordInput.length()-1))){
-                frame.dispose();
-                JOptionPane.showMessageDialog(null,"You have logged on");
-                AdministratorPage aPage = new AdministratorPage();
-            }
-            else{
-                JOptionPane.showMessageDialog(null,"Incorrect email or password");
+                sql = "SELECT * FROM hms.patient WHERE email =" + emailInput;
+                if (handler.handleQuery(sql, passwordInput.substring(1, passwordInput.length() - 1))) {
+                    frame.dispose();
+                    JOptionPane.showMessageDialog(null, "You have logged on");
+                    if (LoginPage.role == 1){//If its patient-login page
+                        Patientpage pPage = new Patientpage();
+                    } else if (LoginPage.role == 2){//If its doctor-login page
+                        DoctorPage dPage = new DoctorPage();
+                    } else if (LoginPage.role == 3) {//If its admin-login page
+                        AdministratorPage aPage = new AdministratorPage();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Incorrect email or password");
+                }
             }
         }
     }
@@ -188,5 +138,19 @@ public class TextFieldListener implements ActionListener{
         }
         else
             return true;
+    }
+
+    public boolean isCorrectTckn(String s){
+        if(s.length() == 11 || s.length() == 0)
+            return true;
+        JOptionPane.showMessageDialog(null,"TCKN should be at least 11 characters");
+        return false;
+    }
+
+    public boolean isEmpty(String s){
+        if(s.length() != 0)
+            return false;
+        JOptionPane.showMessageDialog(null,"Enter your name");
+        return true;
     }
 }
