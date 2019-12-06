@@ -21,66 +21,56 @@ public class QueryHandler {
         //cont.addDoctor();
         //cont.addPatient();
         return true;
-
     }
-    public boolean handleQuery(String query, String password){
-        //System.out.println(password);
-        //System.out.println(password.equals(""));
-        if(password.equals("")){
-            try{
-                stmt.executeUpdate(query);
-            }
-            catch(Exception e){
-                e.printStackTrace();
-            }
-        }
-        else{
-            try (ResultSet rs = stmt.executeQuery(query)) {System.out.println("line38");
-                //System.out.println(rs.next());
-                if(rs.next()){//System.out.println(rs.getString("p_Hashpw") + ", " + password);
-                    if(rs.getString("hashpw").equals(password)){//System.out.println("line40");
-                        System.out.println(query + "\n" + rs.getString("hashpw"));
-                        return true;
-                    }
-                    else{
-                        return false;
-                    }
-                }
-                else{
-                    return false;
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
 
+    public boolean handleQuery(String query) {
         try {
-            conn.close();
-        } catch (Exception e) {
-            System.out.println("Error");
+            stmt.executeUpdate(query);
+            closeConnection();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
             return false;
-        }System.out.println("line59");
-        return true;
+        }
     }
 
-    /*
-    public boolean getPassword(String query, String password){
+    public boolean handleQuery(String query, String password){//For log-in
         try (ResultSet rs = stmt.executeQuery(query)) {
-            while (rs.next()) {
-                if(rs.getString("p_Hashpw").equals(password)){
+            if(rs.next()){
+                if(rs.getString("hashpw").equals(password)){
+                    System.out.println(query + "\n" + rs.getString("hashpw"));
+                    closeConnection();
                     return true;
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        closeConnection();
+        return false;
+    }
+
+    public boolean isEmailExists(String query, String email){
+        try (ResultSet rs = stmt.executeQuery(query)) {
+            if(rs.next()){
+                if(rs.getString("email").equals(email)){
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public void closeConnection(){
         try {
             conn.close();
         } catch (Exception e) {
             System.out.println("Error");
         }
-        return false;
     }
-
-     */
 }
+
+
+

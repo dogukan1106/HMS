@@ -1,3 +1,5 @@
+import com.mysql.jdbc.StreamingNotifiable;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,50 +40,46 @@ public class TextFieldListener implements ActionListener{
         if(!(name == null))//If its register page
         {
             String emailInput = email.getText();
-            emailInput = "'" + emailInput + "'";
+            if(isCorrectEmail(emailInput) && isEmailExists(emailInput)){
+                emailInput = "'" + emailInput + "'";
+                String tcknInput = tckn.getText();
+                tcknInput = "'" + tcknInput + "'";
 
-            String tcknInput = tckn.getText();
-            tcknInput = "'" + tcknInput + "'";
+                String p = password.getText();
+                if(isPassword6char(p)){
+                    String passwordInput = new PasswordHash(p,email.getText()).hash();
 
-            String p = password.getText();
-            String passwordInput = new PasswordHash(p,email.getText()).hash();
+                    String nameInput = name.getText();
+                    nameInput = "'" + nameInput + "'";
 
-            String nameInput = name.getText();
-            nameInput = "'" + nameInput + "'";
+                    passwordInput = "'" + passwordInput + "'";
 
-            passwordInput = "'" + passwordInput + "'";
+                    if(tcknInput.equals("''")){
+                        sql ="INSERT INTO hms.patient(p_Name, email, hashpw) " +
+                                "VALUES("+
+                                nameInput + "," +
+                                emailInput + "," +
+                                passwordInput + ");";
 
-            //System.out.println("name: " + nameInput);
-            //System.out.println("password: " + passwordInput);
-            //System.out.println("tckn: " + tcknInput + "\n");
-            if(tcknInput.equals("''")){
-                sql ="INSERT INTO hms.patient(p_Name, email, hashpw) " +
-                    "VALUES("+
-                    nameInput + "," +
-                    emailInput + "," +
-                    passwordInput + ");";
+                    }
+                    else {
+                        sql = "INSERT INTO hms.patient(p_Tckn, p_Name, email, hashpw) " +
+                                "VALUES(" +
+                                tcknInput + "," +
+                                nameInput + "," +
+                                emailInput + "," +
+                                passwordInput + ");";
 
+                    }
+                    if(handler.handleQuery(sql)){
+                        frame.dispose();
+                        JOptionPane.showMessageDialog(null,"You have registered");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null,"Something bad happened!");
+                    }
+                }
             }
-            else {
-                sql = "INSERT INTO hms.patient(p_Tckn, p_Name, email, hashpw) " +
-                        "VALUES(" +
-                        tcknInput + "," +
-                        nameInput + "," +
-                        emailInput + "," +
-                        passwordInput + ");";
-
-            }
-            //cont.addPatient(nameInput,passwordInput, "'emrekarakuz@gmail.com'",tcknInput);
-            System.out.println(sql);
-            if(handler.handleQuery(sql, "")){
-                frame.dispose();
-                JOptionPane.showMessageDialog(null,"You Registered :)");
-            }
-            else{
-                JOptionPane.showMessageDialog(null,"Something bad happened!");
-            }
-
-
         }
         else if(LoginPage.role == 1)//If its patient-login page
         {
@@ -150,7 +148,45 @@ public class TextFieldListener implements ActionListener{
                 JOptionPane.showMessageDialog(null,"Incorrect email or password");
             }
         }
+    }
 
+    public boolean isCorrectEmail(String email){
+        int check=0;
+        int check2=0;
+        for(int i=0; i<email.length(); i++){
+            if(email.charAt(i) == '@'){
+                check++;
+                for(int j=i+1; j<email.length(); j++){
+                    if(email.charAt(j) == '@')
+                        check++;
+                    else if(email.charAt(j) == '.')
+                        check2++;
+                }
+            }
+        }
+        if(check == 1 && check2>0)
+            return true;
+        else{
+            JOptionPane.showMessageDialog(null,"Enter a correct email");
+            return false;
+        }
+    }
 
+    public boolean isEmailExists(String email){
+        sql="SELECT * FROM hms.patient WHERE email=\"" + email + "\"";
+        if(handler.isEmailExists(sql, email)){
+            JOptionPane.showMessageDialog(null,"User Exists");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isPassword6char(String s){
+        if(s.length() < 6){
+            JOptionPane.showMessageDialog(null,"Password should be at least 6 characters");
+            return false;
+        }
+        else
+            return true;
     }
 }
