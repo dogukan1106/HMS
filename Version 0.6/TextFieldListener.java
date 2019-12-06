@@ -87,7 +87,7 @@ public class TextFieldListener implements ActionListener{
                     frame.dispose();
                     JOptionPane.showMessageDialog(null, "You have logged on");
                     if (LoginPage.role == 1){//If its patient-login page
-                        Patientpage pPage = new Patientpage();
+                        Patientpage pPage = new Patientpage(email);
                     } else if (LoginPage.role == 2){//If its doctor-login page
                         DoctorPage dPage = new DoctorPage();
                     } else if (LoginPage.role == 3) {//If its admin-login page

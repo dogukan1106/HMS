@@ -43,20 +43,20 @@ public class LoginPage {
         frame.getContentPane().add(lblPassword);
 
         email = new JTextField();
-        email.setBounds(199, 82, 96, 20);
+        email.setBounds(199, 82, 160, 20);
         frame.getContentPane().add(email);
         email.setColumns(10);
 
         password = new JPasswordField();
         password.setEchoChar('*');
-        password.setBounds(199, 137, 96, 20);
+        password.setBounds(199, 137, 160, 20);
         frame.getContentPane().add(password);
         password.setColumns(10);
 
         JButton btnLogin = new JButton("Login");
         btnLogin.addActionListener(new TextFieldListener(frame, email, password));
         //btnLogin.addActionListener(new LoginListener(frame));
-        btnLogin.setBounds(199, 201, 87, 23);
+        btnLogin.setBounds(231, 201, 87, 23);
         frame.getContentPane().add(btnLogin);
         frame.setVisible(true);
     }

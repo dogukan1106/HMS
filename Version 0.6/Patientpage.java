@@ -5,6 +5,7 @@ import javax.swing.*;
 public class Patientpage {
 
     private JFrame frame;
+    private JTextField email;
 
     /**
      * Launch the application.
@@ -12,7 +13,8 @@ public class Patientpage {
     /**
      * Create the application.
      */
-    public Patientpage() {
+    public Patientpage(JTextField email) {
+        this.email = email;
         initialize();
     }
 
@@ -35,8 +37,10 @@ public class Patientpage {
 
 
         JButton btnManagePersonalInfo = new JButton("Manage Personal Info");
+        btnManagePersonalInfo.addActionListener(new PersonalInfoListener(frame,email));
         btnManagePersonalInfo.setBounds(120, 60, 173, 23);
         frame.getContentPane().add(btnManagePersonalInfo);
+
 
         JButton btnMakeAnAppointment = new JButton("Make an Appointment");
         btnMakeAnAppointment.setBounds(120, 120, 173, 23);

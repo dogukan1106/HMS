@@ -59,6 +59,19 @@ public class QueryHandler {
         return false;
     }
 
+    public String getInfo(String query, String column){
+        System.out.println(query);
+        try (ResultSet rs = stmt.executeQuery(query)) {
+            if(rs.first()){
+                return rs.getString(column);
+            }
+        } catch (SQLException e) {
+            if(e.getErrorCode() != 0)
+                e.printStackTrace();
+        }
+        return "Problem";
+    }
+
     public void closeConnection(){
         try {
             conn.close();

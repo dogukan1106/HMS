@@ -1,13 +1,17 @@
 import java.awt.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.*;
 
-public class RegisterPage {
+public class PersonalInfoPage{
     private JFrame frame;
+    private JTextField oldEmail;
     private JTextField email;
     private JPasswordField password;
     private JTextField tckn;
     private JTextField name;
+    QueryHandler handler = new QueryHandler();
 
     /**
      * Launch the application.
@@ -15,7 +19,8 @@ public class RegisterPage {
     /**
      * Create the application.
      */
-    public RegisterPage() {
+    public PersonalInfoPage(JTextField email) {
+        this.oldEmail = email;
         initialize();
     }
 
@@ -28,15 +33,21 @@ public class RegisterPage {
         frame.getContentPane().setBackground(Color.ORANGE);
         frame.getContentPane().setLayout(null);
 
+        JLabel label = new JLabel("Personal Info");
+        label.setForeground(Color.MAGENTA);
+        label.setBounds(150, 1, 150, 75);
+        label.setFont(new Font("Sans-Serif", Font.BOLD, 15));
+        frame.getContentPane().add(label);
+
         JLabel lblemail = new JLabel("E-Mail");
         lblemail.setBounds(82, 52, 68, 27);
         frame.getContentPane().add(lblemail);
 
-        JLabel lblPassword = new JLabel("Password");
-        lblPassword.setBounds(82, 107, 68, 27);
+        JLabel lblPassword = new JLabel("New Password");
+        lblPassword.setBounds(82, 107, 150, 27);
         frame.getContentPane().add(lblPassword);
 
-        JLabel lblTckn = new JLabel("TCKN (Optional)");
+        JLabel lblTckn = new JLabel("TCKN");
         lblTckn.setBounds(82, 162, 150, 27);
         frame.getContentPane().add(lblTckn);
 
@@ -45,6 +56,8 @@ public class RegisterPage {
         frame.getContentPane().add(nameLbl);
 
         email = new JTextField();
+        email.setText(setInfo("email"));
+        email.setEditable(false);
         email.setBounds(199, 55, 160, 20);
         frame.getContentPane().add(email);
         email.setColumns(10);
@@ -56,26 +69,31 @@ public class RegisterPage {
         password.setColumns(10);
 
         tckn = new JTextField();
+        tckn.setText(setInfo("p_Tckn"));
         tckn.setBounds(199, 165, 160, 20);
+        if(tckn.getText().length() !=0 )
+            tckn.setEditable(false);
         frame.getContentPane().add(tckn);
         tckn.setColumns(10);
 
         name = new JTextField();
+        name.setText(setInfo("p_Name"));
         name.setBounds(199, 220, 160, 20);
         frame.getContentPane().add(name);
         name.setColumns(10);
 
-
-        JLabel label = new JLabel("Register Page");
-        label.setForeground(Color.MAGENTA);
-        label.setBounds(150, 1, 150, 75);
-        label.setFont(new Font("Sans-Serif", Font.BOLD, 15));
-        frame.getContentPane().add(label);
-
-        JButton register = new JButton("Register");
-        register.addActionListener(new TextFieldListener(frame, email, password, tckn, name));
-        register.setBounds(235, 250, 87, 23);
-        frame.getContentPane().add(register);
+        JButton change = new JButton("Save Changes");
+        change.addActionListener(new ChangeInfoListener(password,tckn,name,oldEmail));
+        change.setBounds(202, 250, 150, 23);
+        frame.getContentPane().add(change);
         frame.setVisible(true);
     }
+
+    public String setInfo(String column){
+        String sql = "SELECT * FROM hms.patient WHERE email=\""+ oldEmail.getText() +"\";";
+        handler.connect();
+        return handler.getInfo(sql, column);
+    }
+
+
 }
