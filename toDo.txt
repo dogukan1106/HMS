@@ -1,0 +1,1 @@
+--Tckn input on register page, user can only max 11 characters, not more
