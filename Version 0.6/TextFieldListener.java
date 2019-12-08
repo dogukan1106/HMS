@@ -39,12 +39,12 @@ public class TextFieldListener implements ActionListener{
         handler.connect();
         String emailInput = email.getText();
         String p = password.getText();
-        if(isCorrectEmail(emailInput) && isPassword6char(p)){
+        if(isCorrectEmail(emailInput)){
             if(!(name == null))//If its register page
             {
                 String tcknInput = tckn.getText();
                 String nameInput = name.getText();
-                if(isEmailExists(emailInput) && isCorrectTckn(tcknInput) &&  !isEmpty(nameInput)){
+                if(isEmailExists(emailInput) && isCorrectTckn(tcknInput) && isPassword6char(p) && !isEmpty(nameInput)){
                     emailInput = "'" + emailInput + "'";
                     tcknInput = "'" + tcknInput + "'";
                     nameInput = "'" + nameInput + "'";
@@ -76,7 +76,7 @@ public class TextFieldListener implements ActionListener{
                     }
                 }
             }
-            else {//If its NOT register page
+            else if(isPassword6char(p)) {//If its NOT register page
                 emailInput = "'" + emailInput + "'";
 
                 String passwordInput = new PasswordHash(p, email.getText()).hash();

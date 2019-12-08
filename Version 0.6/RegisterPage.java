@@ -56,6 +56,7 @@ public class RegisterPage {
         password.setColumns(10);
 
         tckn = new JTextField();
+        tckn.setDocument(new JTextFieldLimit(11));
         tckn.setBounds(199, 165, 160, 20);
         frame.getContentPane().add(tckn);
         tckn.setColumns(10);

@@ -26,15 +26,17 @@ public class ChangeInfoListener implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        System.out.println("x at line 29: " + x);
+        System.out.println(name.getText());
         if(isDifferent("p_Name", name.getText())){
             changeName = true;
-            x++;
+            x++;System.out.println("x++ at line 32");
         }
         if(isPassword6char(password.getText()) && password.getText().length() != 0){
             newPassword = new PasswordHash(password.getText(),oldEmail.getText()).hash();
             if(isDifferent("hashpw", newPassword)){
                 changePassword = true;
-                x++;
+                x++;System.out.println("x++ at line 38");
             }
         }
         if(tckn.getText().length()>0){
@@ -63,8 +65,10 @@ public class ChangeInfoListener implements ActionListener {
             sql="UPDATE hms.patient SET hashpw='"+newPassword+"' WHERE email=\"" + oldEmail.getText() +"\"";
             handler.handleQuery(sql);
         }
+        System.out.println("x at line 67: " + x);
         if(x>0)
             JOptionPane.showMessageDialog(null,"Your Info has been changed");
+        x=0;
     }
 
     public boolean isDifferent(String column, String newStr){

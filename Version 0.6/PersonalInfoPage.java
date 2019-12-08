@@ -70,6 +70,7 @@ public class PersonalInfoPage{
 
         tckn = new JTextField();
         tckn.setText(setInfo("p_Tckn"));
+        tckn.setDocument(new JTextFieldLimit(11));
         tckn.setBounds(199, 165, 160, 20);
         if(tckn.getText().length() !=0 )
             tckn.setEditable(false);
