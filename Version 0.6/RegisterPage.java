@@ -1,5 +1,6 @@
 import java.awt.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class RegisterPage {
@@ -24,58 +25,67 @@ public class RegisterPage {
      */
     private void initialize() {
         frame = new JFrame();
-        frame.setBounds(100, 100, 500, 400);
+        frame.setBounds(100, 100, 650, 450);
         frame.getContentPane().setBackground(Color.ORANGE);
         frame.getContentPane().setLayout(null);
+
+        JLabel label = new JLabel("Register Page");
+        label.setForeground(Color.MAGENTA);
+        label.setBounds(150, 7, 150, 75);
+        label.setFont(new Font("Sans-Serif", Font.BOLD, 15));
+        frame.getContentPane().add(label);
 
         JLabel lblemail = new JLabel("E-Mail");
         lblemail.setBounds(82, 52, 68, 27);
         frame.getContentPane().add(lblemail);
 
         JLabel lblPassword = new JLabel("Password");
-        lblPassword.setBounds(82, 107, 68, 27);
+        lblPassword.setBounds(82, 117, 68, 27);
         frame.getContentPane().add(lblPassword);
 
         JLabel lblTckn = new JLabel("TCKN (Optional)");
-        lblTckn.setBounds(82, 162, 150, 27);
+        lblTckn.setBounds(82, 175, 150, 27);
         frame.getContentPane().add(lblTckn);
 
         JLabel nameLbl = new JLabel("Name");
-        nameLbl.setBounds(82, 217, 150, 27);
+        nameLbl.setBounds(82, 220, 150, 27);
         frame.getContentPane().add(nameLbl);
 
         email = new JTextField();
-        email.setBounds(199, 55, 160, 20);
+        email.setBounds(199, 55, 96, 20);
         frame.getContentPane().add(email);
         email.setColumns(10);
 
         password = new JPasswordField();
         password.setEchoChar('*');
-        password.setBounds(199, 110, 160, 20);
+        password.setBounds(199, 110, 96, 20);
         frame.getContentPane().add(password);
         password.setColumns(10);
 
         tckn = new JTextField();
-        tckn.setDocument(new JTextFieldLimit(11));
-        tckn.setBounds(199, 165, 160, 20);
+        tckn.setBounds(199, 175, 96, 20);
         frame.getContentPane().add(tckn);
         tckn.setColumns(10);
 
         name = new JTextField();
-        name.setBounds(199, 220, 160, 20);
+        name.setBounds(199, 220, 96, 20);
         frame.getContentPane().add(name);
         name.setColumns(10);
 
-
-        JLabel label = new JLabel("Register Page");
-        label.setForeground(Color.MAGENTA);
-        label.setBounds(150, 1, 150, 75);
-        label.setFont(new Font("Sans-Serif", Font.BOLD, 15));
-        frame.getContentPane().add(label);
-
+        JButton btnBack = new JButton();
+        btnBack.setBounds(0,0,70,50);
+        btnBack.setBackground(Color.orange);
+        try {
+            Image img = ImageIO.read(getClass().getResource("icons8-go-back-64.png"));
+            btnBack.setIcon(new ImageIcon(img));
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        btnBack.addActionListener(new backToMainListener(frame));
+        frame.getContentPane().add(btnBack);
         JButton register = new JButton("Register");
         register.addActionListener(new TextFieldListener(frame, email, password, tckn, name));
-        register.setBounds(235, 250, 87, 23);
+        register.setBounds(199, 250, 87, 23);
         frame.getContentPane().add(register);
         frame.setVisible(true);
     }
