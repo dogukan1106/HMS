@@ -82,7 +82,7 @@ public class TextFieldListener implements ActionListener{
                 String passwordInput = new PasswordHash(p, email.getText()).hash();
                 passwordInput = "'" + passwordInput + "'";
 
-                sql = "SELECT * FROM hms.patient WHERE email =" + emailInput;
+                sql = "SELECT * FROM hms." + tableName(LoginPage.role) + " WHERE email =" + emailInput;
                 if (handler.handleQuery(sql, passwordInput.substring(1, passwordInput.length() - 1))) {
                     frame.dispose();
                     JOptionPane.showMessageDialog(null, "You have logged on");
@@ -152,5 +152,15 @@ public class TextFieldListener implements ActionListener{
             return false;
         JOptionPane.showMessageDialog(null,"Enter your name");
         return true;
+    }
+
+    public String tableName(int role){
+        if (role == 1){//If its patient-login page
+            return "patient";
+        } else if (role == 2){//If its doctor-login page
+            return "doctor";
+        } else {//If its admin-login page
+            return "administrator";
+        }
     }
 }
