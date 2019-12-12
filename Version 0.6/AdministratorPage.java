@@ -36,7 +36,6 @@ public class AdministratorPage {
 
         JButton btnViewAppointments = new JButton("View Appointments");
         btnViewAppointments.setBounds(65, 100, 150, 50);
-        btnViewAppointments.addActionListener(new AdminViewAppPageListener(frame));
         frame.getContentPane().add(btnViewAppointments);
 
         JButton btnManageDoctors = new JButton("Manage Doctors");

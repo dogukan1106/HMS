@@ -8,7 +8,7 @@ public class QueryHandler {
 
     public boolean connect() {
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "Ggeasywpty.123");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "13212karE");
             stmt = conn.createStatement();
             //System.out.println("Connected!");
 
@@ -70,6 +70,29 @@ public class QueryHandler {
                 e.printStackTrace();
         }
         return "Problem";
+    }
+
+    public String[] sendDoctors(String query){
+        int count = 0;
+        try (ResultSet rs = stmt.executeQuery(query)) {
+            while(rs.next()){
+                count++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String[] doctors = new String[count];
+        try (ResultSet rs = stmt.executeQuery(query)) {
+            int i = 0;
+            while(rs.next()){
+                doctors[i] = rs.getString("email");
+                i++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return doctors;
     }
 
     public void closeConnection(){

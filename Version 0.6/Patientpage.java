@@ -44,10 +44,9 @@ public class Patientpage {
 
         JButton btnMakeAnAppointment = new JButton("Make an Appointment");
         btnMakeAnAppointment.setBounds(120, 120, 173, 23);
-        btnMakeAnAppointment.addActionListener(new MakeAppointmentPageListener(frame));
         frame.getContentPane().add(btnMakeAnAppointment);
 
-        JButton btnViewAppoinments = new JButton("View Appointments");
+        JButton btnViewAppoinments = new JButton("View Appoinments");
         btnViewAppoinments.setBounds(120, 180, 173, 23);
         frame.getContentPane().add(btnViewAppoinments);
         frame.setVisible(true);

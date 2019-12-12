@@ -5,8 +5,9 @@ import javax.swing.*;
 public class RemoveDoctorPage {
     public static int role;
     private JFrame frame;
-    private JTextField username;
+    private JTextField email;
     private JPasswordField password;
+    QueryHandler handler = new QueryHandler();
 
     /**
      * Launch the application.
@@ -34,17 +35,23 @@ public class RemoveDoctorPage {
         label.setFont(new Font("Sans-Serif", Font.BOLD, 15));
         frame.getContentPane().add(label);
 
-        JLabel lblUsername = new JLabel("Username");
-        lblUsername.setBounds(82, 79, 68, 27);
-        frame.getContentPane().add(lblUsername);
+        JLabel lblEmail = new JLabel("Doctors: ");
+        lblEmail.setBounds(82, 79, 68, 27);
+        frame.getContentPane().add(lblEmail);
 
-        username = new JTextField();
-        username.setBounds(199, 82, 96, 20);
-        frame.getContentPane().add(username);
-        username.setColumns(10);
+        /*
+        email = new JTextField();
+        email.setBounds(199, 82, 96, 20);
+        frame.getContentPane().add(email);
+        email.setColumns(10);
+        */
+        handler.connect();
+        JComboBox doctors = new JComboBox(handler.sendDoctors("SELECT * FROM hms.doctor"));
+        doctors.setBounds(199, 82, 150, 20);
+        frame.getContentPane().add(doctors);
 
         JButton removeDoctor = new JButton("Remove");
-        removeDoctor.addActionListener(new RemoveQueryListener(frame));
+        removeDoctor.addActionListener(new RemoveQueryListener(frame,doctors));
         removeDoctor.setBounds(199, 160, 87, 23);
         frame.getContentPane().add(removeDoctor);
         frame.setVisible(true);
