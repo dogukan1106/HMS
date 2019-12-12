@@ -12,7 +12,7 @@ public class MainPage  {
 
     private void display() {
 
-        frame = new JFrame("BRUH FRAME");
+        frame = new JFrame("Hospital Management System");
         frame.setIconImage(new ImageIcon(getClass().getResource("favicon.jpg")).getImage());
         frame.setSize(500,500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

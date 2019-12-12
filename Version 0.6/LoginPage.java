@@ -5,6 +5,7 @@ import javax.swing.*;
 
 public class LoginPage {
     public static int role;
+    public static String current_email;
     private JFrame frame;
     private JTextField email;
     private JPasswordField password;
@@ -68,6 +69,7 @@ public class LoginPage {
         btnLogin.addActionListener(new TextFieldListener(frame, email, password));
         //btnLogin.addActionListener(new LoginListener(frame));
         btnLogin.setBounds(199, 201, 87, 23);
+        frame.getRootPane().setDefaultButton(btnLogin);
         frame.getContentPane().add(btnBack);
         frame.getContentPane().add(btnLogin);
         frame.setVisible(true);
