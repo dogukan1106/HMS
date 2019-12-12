@@ -5,6 +5,7 @@ import javax.swing.*;
 
 public class LoginPage {
     public static int role;
+    public static String current_email;
     private JFrame frame;
     private JTextField email;
     private JPasswordField password;
