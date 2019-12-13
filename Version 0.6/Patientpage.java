@@ -1,5 +1,6 @@
 import java.awt.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Patientpage {
@@ -50,6 +51,18 @@ public class Patientpage {
         JButton btnViewAppoinments = new JButton("View Appointments");
         btnViewAppoinments.setBounds(120, 180, 173, 23);
         frame.getContentPane().add(btnViewAppoinments);
+
+        JButton backbutton = new JButton();
+        backbutton.setBounds(0,0,73,73);
+        try {
+            Image img = ImageIO.read(getClass().getResource("backmainb.png"));
+            backbutton.setIcon(new ImageIcon(img));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        backbutton.addActionListener(new backToMainListener(frame));
+        frame.getContentPane().add(backbutton);
+
         frame.setVisible(true);
     }
 }

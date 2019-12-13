@@ -2,6 +2,7 @@ import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class PersonalInfoPage{
@@ -30,11 +31,11 @@ public class PersonalInfoPage{
     private void initialize() {
         frame = new JFrame();
         frame.setBounds(100, 100, 500, 400);
-        frame.getContentPane().setBackground(Color.ORANGE);
+        frame.getContentPane().setBackground(Color.cyan);
         frame.getContentPane().setLayout(null);
 
         JLabel label = new JLabel("Personal Info");
-        label.setForeground(Color.MAGENTA);
+        label.setForeground(Color.blue);
         label.setBounds(150, 1, 150, 75);
         label.setFont(new Font("Sans-Serif", Font.BOLD, 15));
         frame.getContentPane().add(label);
@@ -87,6 +88,18 @@ public class PersonalInfoPage{
         change.addActionListener(new ChangeInfoListener(password,tckn,name,oldEmail));
         change.setBounds(202, 250, 150, 23);
         frame.getContentPane().add(change);
+
+        JButton backbutton = new JButton();
+        backbutton.setBounds(0,0,73,73);
+        try {
+            Image img = ImageIO.read(getClass().getResource("backmainb.png"));
+            backbutton.setIcon(new ImageIcon(img));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        backbutton.addActionListener(new backToPatientPageListener(frame,email));
+        frame.getContentPane().add(backbutton);
+
         frame.setVisible(true);
     }
 

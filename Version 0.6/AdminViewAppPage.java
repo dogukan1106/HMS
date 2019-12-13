@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.sql.ResultSet;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class AdminViewAppPage {
@@ -25,7 +26,7 @@ public class AdminViewAppPage {
     public void initialize() {
         frame = new JFrame();
         frame.setBounds(100, 100, 450, 300);
-        frame.getContentPane().setBackground(Color.yellow);
+        frame.getContentPane().setBackground(Color.blue);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
@@ -34,6 +35,17 @@ public class AdminViewAppPage {
         label.setFont(new Font("Sans-Serif", Font.BOLD, 16));
         label.setBounds(150,3,200,20);
         frame.getContentPane().add(label);
+
+        JButton back_button = new JButton();
+        back_button.setBounds(0,0,80,80);
+        try {
+            Image img = ImageIO.read(getClass().getResource("bckadmin.png"));
+            back_button.setIcon(new ImageIcon(img));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        back_button.addActionListener(new backToAdminPageListener(frame));
+        frame.getContentPane().add(back_button);
 
 
 

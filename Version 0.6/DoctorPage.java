@@ -1,3 +1,4 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 
@@ -23,7 +24,7 @@ public class DoctorPage {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		frame.getContentPane().setBackground(Color.ORANGE);
+		frame.getContentPane().setBackground(Color.blue);
 
 		JLabel label = new JLabel("Doctor Page");
 		label.setForeground(Color.blue);
@@ -31,14 +32,24 @@ public class DoctorPage {
 		label.setFont(new Font("Sans-Serif", Font.BOLD, 15));
 		frame.getContentPane().add(label);
 		
-		JButton btnViewApoointments = new JButton("View Appointments");
-		btnViewApoointments.setBounds(50, 111, 169, 23);
-		frame.getContentPane().add(btnViewApoointments);
-		frame.setVisible(true);
+		JButton btnViewAppointments = new JButton("View Appointments");
+		btnViewAppointments.setBounds(50, 111, 169, 23);
+		frame.getContentPane().add(btnViewAppointments);
 
-		JButton btnCancelApoointments = new JButton("Cancel Appointments");
-		btnCancelApoointments.setBounds(230, 111, 169, 23);
-		frame.getContentPane().add(btnCancelApoointments);
+		JButton btnCancelAppointments = new JButton("Cancel Appointments");
+		btnCancelAppointments.setBounds(230, 111, 169, 23);
+		frame.getContentPane().add(btnCancelAppointments);
+		JButton backbutton = new JButton();
+		backbutton.setBounds(0,0,73,73);
+		try {
+			Image img = ImageIO.read(getClass().getResource("backmainb.png"));
+			backbutton.setIcon(new ImageIcon(img));
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		backbutton.addActionListener(new backToMainListener(frame));
+		frame.getContentPane().add(backbutton);
+
 		frame.setVisible(true);
 	}
 }

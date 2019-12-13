@@ -1,13 +1,13 @@
 import java.awt.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class RemoveDoctorPage {
     public static int role;
     private JFrame frame;
-    private JTextField email;
+    private JTextField username;
     private JPasswordField password;
-    QueryHandler handler = new QueryHandler();
 
     /**
      * Launch the application.
@@ -35,25 +35,32 @@ public class RemoveDoctorPage {
         label.setFont(new Font("Sans-Serif", Font.BOLD, 15));
         frame.getContentPane().add(label);
 
-        JLabel lblEmail = new JLabel("Doctors: ");
-        lblEmail.setBounds(82, 79, 68, 27);
-        frame.getContentPane().add(lblEmail);
+        JLabel lblUsername = new JLabel("Username");
+        lblUsername.setBounds(82, 79, 68, 27);
+        frame.getContentPane().add(lblUsername);
 
-        /*
-        email = new JTextField();
-        email.setBounds(199, 82, 96, 20);
-        frame.getContentPane().add(email);
-        email.setColumns(10);
-        */
-        handler.connect();
-        JComboBox doctors = new JComboBox(handler.sendDoctors("SELECT * FROM hms.doctor"));
-        doctors.setBounds(199, 82, 150, 20);
-        frame.getContentPane().add(doctors);
+        username = new JTextField();
+        username.setBounds(199, 82, 96, 20);
+        frame.getContentPane().add(username);
+        username.setColumns(10);
 
         JButton removeDoctor = new JButton("Remove");
-        removeDoctor.addActionListener(new RemoveQueryListener(frame,doctors));
+        removeDoctor.addActionListener(new RemoveQueryListener(frame));
         removeDoctor.setBounds(199, 160, 87, 23);
         frame.getContentPane().add(removeDoctor);
+
+        JButton btnBack = new JButton();
+        btnBack.setBounds(0,0,70,50);
+        btnBack.setBackground(Color.orange);
+        try {
+            Image img = ImageIO.read(getClass().getResource("icons8-go-back-64.png"));
+            btnBack.setIcon(new ImageIcon(img));
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        btnBack.addActionListener(new backToManageDoctorsPageListener(frame));
+        frame.getContentPane().add(btnBack);
+
         frame.setVisible(true);
     }
 }

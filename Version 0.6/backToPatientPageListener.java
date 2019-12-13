@@ -3,17 +3,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class RemoveQueryListener implements ActionListener {
+public class backToPatientPageListener implements ActionListener {
     JFrame frame;
-    public RemoveQueryListener(JFrame frame) {
+    JTextField email;
+    public backToPatientPageListener(JFrame frame, JTextField email) {
+
         this.frame = frame;
+        this.email = email;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         frame.dispose();
-        JOptionPane.showMessageDialog(null,"BRUH");
-        AdministratorPage aPage = new AdministratorPage();
+        Patientpage patientpage = new Patientpage(email);
     }
 
 

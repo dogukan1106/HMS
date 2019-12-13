@@ -1,5 +1,6 @@
 import java.awt.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class AddDoctorPage {
@@ -77,6 +78,19 @@ public class AddDoctorPage {
         addDoctor.addActionListener(new AddQueryListener(frame,email,password,name,department));
         addDoctor.setBounds(199, 302, 87, 23);
         frame.getContentPane().add(addDoctor);
+
+        JButton btnBack = new JButton();
+        btnBack.setBounds(0,0,70,50);
+        btnBack.setBackground(Color.orange);
+        try {
+            Image img = ImageIO.read(getClass().getResource("icons8-go-back-64.png"));
+            btnBack.setIcon(new ImageIcon(img));
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        btnBack.addActionListener(new backToManageDoctorsPageListener(frame));
+        frame.getContentPane().add(btnBack);
+
         frame.setVisible(true);
     }
 }

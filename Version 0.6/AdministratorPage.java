@@ -1,5 +1,6 @@
 import java.awt.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class AdministratorPage {
@@ -43,7 +44,19 @@ public class AdministratorPage {
         btnManageDoctors.setBounds(235, 100, 150, 50);
         btnManageDoctors.addActionListener(new ManageDoctorsListener(frame));
         frame.getContentPane().add(btnManageDoctors);
+
+        JButton backbutton = new JButton();
+        backbutton.setBounds(0,0,73,73);
+        try {
+            Image img = ImageIO.read(getClass().getResource("backmainb.png"));
+            backbutton.setIcon(new ImageIcon(img));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        backbutton.addActionListener(new backToMainListener(frame));
+        frame.getContentPane().add(backbutton);
         frame.setVisible(true);
+
     }
 }
 
