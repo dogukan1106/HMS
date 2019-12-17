@@ -44,6 +44,10 @@ CREATE TABLE hms.Administrator
   UNIQUE (email)
 );
 
+ALTER TABLE `hms`.`make_appointments` 
+CHANGE COLUMN `checkin_time` `checkin_time` VARCHAR(20) NOT NULL ;
+
+
 INSERT INTO hms.administrator(hashpw,email) VALUES('541M4Z5A+id1E2vXnnX6Dw==','duduoglu@ozu.edu.tr'); /*
 email: duduoglu@ozu.edu.tr
 password: 123456
